@@ -1,32 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maps App</title>
-    <style>
-        #map {
-            height: 500px;
-            width: 100%;
-        }
-        form {
-            margin: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Location Tracker</title>
 </head>
 <body>
-    <h1>Location Tracker</h1>
-    <div id="map"></div>
-    <form id="locationForm">
-        <label for="locationName">Location Name:</label>
-        <input type="text" id="locationName" required />
-        <button type="submit">Save Location</button>
-    </form>
-    <script src="script.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-        async
-        defer
-    ></script>
-</body>
-</html>
+  <h1>Location Tracker</h1>
+
+  <input id="flatNo" placeholder="Flat No / House No"><br><br>
+  <input id="apartment" placeholder="Apartment Name"><br><br>
+  <input id="street" placeholder="Street Name"><br><br>
+  <input id="villageTown" placeholder="Village / Town"><br><br>
+  <input id="mandal" placeholder="Mandal"><br><br>
+  <input id="state" placeholder="State"><br><br>
+  <input id="pincode" placeholder="Pincode"><br><br>
+
+  <button onclick="getLocation()">Capture Location</button>
+  <p id="output"></p>
+
+  <script>
+    function getLocation() {
+      const flatNo = document.getElementById('flatNo').value;
+      const apartment = document.getElementById('apartment').value;
+      const street = document.getElementById('street').value;
+      const villageTown = document.getElementById('villageTown').value;
+      const mandal = document.getElementById('mandal').value;
+      const state = document.getElementById('state').value;
+      const pincode = document.getElementById('pincode').value;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          const summary = `
+            📍 Location Captured!
+            -----------------------------
+            Flat No: ${flatNo}
+            Apartment: ${apartment}
+            Street: ${street}
+            Town: ${villageTown}
+            Mandal: ${mandal}
+            State: ${state}
+            Pincode: ${pincode}
+            Latitude: ${latitude}
+            Longitude: ${longitude}
+          `;
+
+          document.getElementById('output').innerText = summary;
+
+          // You’ll replace this with API call in backend step
+          console.log({
+            flatNo, apartment, street, villageTown,
+            mandal, state, pincode, latitude, longitude
+          });
