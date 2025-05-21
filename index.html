@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps App</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        form {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Location Tracker</h1>
+    <div id="map"></div>
+    <form id="locationForm">
+        <label for="locationName">Location Name:</label>
+        <input type="text" id="locationName" required />
+        <button type="submit">Save Location</button>
+    </form>
+    <script src="script.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+        async
+        defer
+    ></script>
+</body>
+</html>
